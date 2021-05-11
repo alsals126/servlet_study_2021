@@ -1,0 +1,33 @@
+package kr.hs.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/htttp")
+public class FifthServlet extends HttpServlet{
+	@Override
+	public void init() throws ServletException {
+		System.out.println("init() 메서드 호출");
+	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = res.getWriter(); // 출력 객체 만들어야함
+		out.print("<html><head><title>요청방식과 프로토콜</title></head><body>");
+		
+		out.println("request URI : " + req.getRequestURI());
+		out.println("Server name : " + req.getServerName());
+		out.println("Server Port : " + req.getServerPort());
+		out.println("client addr : " + req.getRemoteAddr());
+		out.println("client Host : " + req.getRemoteHost());
+		out.println("client Port : " + req.getRemotePort());
+		
+		out.print("</body></html>");
+	}
+}
